@@ -1,20 +1,14 @@
+'use client';
 import useLogin from '@/hooks/useLogin';
 
-interface LoginFormProps {
-    onSubmit: (email: string, password: string) => void;
-}
-
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
-  const { email, password } = useLogin();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(email, password);
-  }
+const LoginForm: React.FC = () => {
+  const { handleLoginSubmit } = useLogin();
 
   return (
     <>
-      <form onSubmit={() => handleSubmit}></form>
+      <form onSubmit={handleLoginSubmit}>
+        <button type='submit'>Submit</button>
+      </form>
     </>
   );
 }

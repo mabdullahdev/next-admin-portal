@@ -26,6 +26,7 @@ const useApi = <T, P = unknown>(): APIState<T, P> => {
 
       try {
         let response: AxiosResponse<T>;
+
         switch (method) {
         case 'get':
           response = await axiosInstance.get<T>(endpoint, config);
@@ -45,7 +46,6 @@ const useApi = <T, P = unknown>(): APIState<T, P> => {
         default:
           throw new Error('Unsupported method');
         };
-
         setData(response.data);
       } catch (error) {
         if (error instanceof Error) {
