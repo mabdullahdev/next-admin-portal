@@ -8,5 +8,13 @@
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error", "single"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "quotes": ["error", "single"]
+      }
+    }
+  ]
 }
