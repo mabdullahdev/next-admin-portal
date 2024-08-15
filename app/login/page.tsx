@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginForm from '@/components/forms/LoginForm';
-import Image from 'next/image';
 
 const LoginPage: React.FC = () => {
   return (
@@ -11,13 +10,6 @@ const LoginPage: React.FC = () => {
           <div className='py-8'>
             <p className='text-white text-sm font-normal'>A product is something a brand is something that is bought by the customer.</p>
           </div>
-          <Image
-            src='/images/login-footer-brands.svg'
-            alt='Footer Brands'                    
-            width={300}                           
-            height={100}  
-          />
-          
         </div>
       </div>
       <div className='bg-white'>

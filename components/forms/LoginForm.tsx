@@ -2,7 +2,7 @@
 import useLogin from '@/hooks/useLogin';
 
 const LoginForm: React.FC = () => {
-  const { handleLoginSubmit } = useLogin();
+  const { handleLoginSubmit, setEmail, setPassword } = useLogin();
 
   return (
     <div>
@@ -18,18 +18,18 @@ const LoginForm: React.FC = () => {
           <div className='mt-2'>
             <input
               id='email'
-              name='email'
               type='email'
               autoComplete='new-email'
+              onChange={(e) => setEmail(e.target.value)} 
               className='block px-3 py-4 w-full h-10  rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 autofill:bg-yellow-200 sm:text-sm sm:leading-6'
             />
           </div>
           <div className='mt-4 relative'>
             <input
               id='password'
-              name='password'
               type='password'
               autoComplete='new-password'
+              onChange={(e) => setPassword(e.target.value)} 
               className='block px-3 py-4 w-full h-10  rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 autofill:bg-yellow-200 sm:text-sm sm:leading-6'
             />
           </div>
