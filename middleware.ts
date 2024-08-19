@@ -6,7 +6,15 @@ export const config = {
 };
 
 export async function middleware(req: NextRequest) {
-  const accessToken = req.cookies.get('token');
+  const cookieHeader = req.headers.get('cookie') || '';
+  const cookies = Object.fromEntries(
+    cookieHeader.split('; ').map(cookie => {
+      const [key, value] = cookie.split('=');
+      return [key, value];
+    })
+  );
+
+  const accessToken = cookies.accessToken;
 
   if (!accessToken) {
     return NextResponse.redirect(new URL('/login', req.url));

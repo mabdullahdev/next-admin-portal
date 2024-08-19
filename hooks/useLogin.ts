@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import useApi from './useAPI';
-import User from '@/utils/models/_user';
+import User from '@/utils/models/auth/_user';
+import { useAuthStore } from '@/store/authStore';
 
 interface LoginHook {
   email: string;
@@ -13,13 +14,20 @@ interface LoginHook {
 }
 
 const useLogin = (): LoginHook => {
-  const [email, setEmail] = useState<string>('mabdullahkhan009@gmail.com');
-  const [password, setPassword] = useState<string>('D00bert!');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const { data, error, request } = useApi<User>();
+  const { login } = useAuthStore();
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    if (data?.user && data.token && data.refreshToken) {
+      // Set cookies manually
+      document.cookie = `accessToken=${data.token}; path=/; secure; samesite=strict`;
+      document.cookie = `refreshToken=${data.refreshToken}; path=/; secure; samesite=strict`;
+      
+      login(data?.user, data?.token, data?.refreshToken);
+    }
+  }, [data, login]);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
