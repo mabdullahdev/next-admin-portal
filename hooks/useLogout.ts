@@ -1,4 +1,3 @@
-'use client';
 import { useAuthStore } from '@/store/authStore';
 import { useRouter } from 'next/navigation';
 import useApi from './useAPI'
