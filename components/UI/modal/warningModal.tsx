@@ -1,6 +1,6 @@
 'use client'
 import React, { ReactNode } from 'react';
-import BaseModal, { ModalVariants } from './base-modal';
+import BaseModal, { ModalVariants } from './baseModal';
 
 interface ModalProps {
   title: string;

@@ -1,6 +1,11 @@
 import { useState } from 'react';
-
-function useModal() {
+interface ModalHooks{
+  isOpen: boolean;
+  open: () => void;
+  close: () => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const useModal = (): ModalHooks => {
   const [isOpen, setIsOpen] = useState(false);
 
   function open() {

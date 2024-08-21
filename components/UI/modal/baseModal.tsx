@@ -5,9 +5,9 @@ import React, { ReactNode } from 'react';
 
 
 export enum ModalVariants{
-  SIMPLE='SIMPLE',
-  JUSTIFIED='JUSTIFIED',
-  CENTERED='CENTERED',
+  SIMPLE = 'SIMPLE',
+  JUSTIFIED = 'JUSTIFIED',
+  CENTERED = 'CENTERED',
 }
 
 interface ModalProps {
@@ -23,8 +23,8 @@ interface ModalProps {
 }
 
 const BaseModal = (props: ModalProps): ReactNode => {
-  if(props.variant===ModalVariants.JUSTIFIED) return <JustifiedModal {...props}/>
-  if(props.variant===ModalVariants.CENTERED) return <CenteredModal {...props}/>
+  if(props.variant === ModalVariants.JUSTIFIED) return <JustifiedModal {...props}/>
+  if(props.variant === ModalVariants.CENTERED) return <CenteredModal {...props}/>
   return <SimpleModal {...props}/>
 }
 

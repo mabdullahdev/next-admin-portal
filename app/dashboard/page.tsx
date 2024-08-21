@@ -1,5 +1,5 @@
 'use client'
-import WarningModal from '@/components/UI/modal/warning-modal';
+import WarningModal from '@/components/UI/modal/warningModal';
 import useModal from '@/hooks/useModal';
 import { Button } from '@headlessui/react';
 import React from 'react';
