@@ -1,13 +1,10 @@
 'use client'
 import { ModalVariants } from '@/utils/constants';
-import { ModalProps } from '@/utils/types';
+import { WarningModalProps } from '@/utils/types';
 import { ReactNode } from 'react';
 import BaseModal from './base';
 
-type WarningModalProps = ModalProps & {
-  warning: string,
-  onConfirmBtn: (e: React.MouseEvent<HTMLButtonElement>) => void
-}
+
 
 const WarningModal = (props: WarningModalProps): ReactNode => {
   const { warning, close, onConfirmBtn, ...restProps } = props;

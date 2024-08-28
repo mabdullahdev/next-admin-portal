@@ -1,5 +1,6 @@
 import { ModalVariants } from './constants';
 
+//------------------------Modal Types------------------------
 export type ModalProps = {
   title: string;
   description?: string;
@@ -10,4 +11,9 @@ export type ModalProps = {
   variant?: ModalVariants;
 }
 
-export type VariantModalProps= Pick<ModalProps,'children' | 'title'>
+export type VariantModalProps= Pick<ModalProps,'children' | 'title' | 'description' | 'icon'>
+
+export type WarningModalProps = ModalProps & {
+  warning: string,
+  onConfirmBtn: (e: React.MouseEvent<HTMLButtonElement>) => void
+}
