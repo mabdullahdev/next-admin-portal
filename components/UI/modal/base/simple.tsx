@@ -9,7 +9,7 @@ export const SimpleModal = ({ title, description,children }: VariantModalProps):
         <DialogTitle as='h3' className='text-base font-semibold leading-6 text-gray-900'>
           {title}
         </DialogTitle>
-        <Description>{description}</Description>
+        <Description className='text-sm text-gray-500'>{description}</Description>
         <div className='mt-2'>
           {children}
         </div>
