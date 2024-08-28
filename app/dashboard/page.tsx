@@ -5,7 +5,7 @@ import { Button } from '@headlessui/react';
 import React from 'react';
 
 const DashboardPage: React.FC = () => {
-  const { isOpen, open, close, setIsOpen } = useModal();
+  const { isOpen, open, close } = useModal();
 
   return (
     <>
@@ -22,7 +22,6 @@ const DashboardPage: React.FC = () => {
           title='Deactivate account'
           open={isOpen}
           close={close}
-          setOpen={setIsOpen}
           warning='Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.'
           onConfirmBtn={close}
         />

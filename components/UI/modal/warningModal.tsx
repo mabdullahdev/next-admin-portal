@@ -1,25 +1,20 @@
 'use client'
-import React, { ReactNode } from 'react';
-import BaseModal, { ModalVariants } from './baseModal';
+import { ModalVariants } from '@/utils/constants';
+import { ModalProps } from '@/utils/types';
+import { ReactNode } from 'react';
+import BaseModal from './base';
 
-interface ModalProps {
-  title: string;
-  description?: string;
-  icon?: string;
-  className?: string;
-  warning: string;
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  close: () => void;
-  onConfirmBtn: () => void;
+type WarningModalProps = ModalProps & {
+  warning: string,
+  onConfirmBtn: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const WarningModal = (props: ModalProps): ReactNode => {
-  const { warning,close, onConfirmBtn, ...restProps } = props;
+const WarningModal = (props: WarningModalProps): ReactNode => {
+  const { warning, close, onConfirmBtn, ...restProps } = props;
 
   return (
     <BaseModal
-      variant={ModalVariants.JUSTIFIED}
+      variant={ModalVariants.CENTERED}
       close={close}
       {...restProps}
 
