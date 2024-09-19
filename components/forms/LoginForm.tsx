@@ -1,8 +1,8 @@
 'use client';
-import useLogin from '@/hooks/useLogin';
+import useAuth from '@/hooks/useAuth';
 
 const LoginForm: React.FC = () => {
-  const { handleLoginSubmit, setEmail, setPassword } = useLogin();
+  const { handleLoginSubmit, setEmail, setPassword } = useAuth();
 
   return (
     <div>
