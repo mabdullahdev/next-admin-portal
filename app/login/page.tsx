@@ -1,10 +1,10 @@
 import React from 'react';
 import LoginForm from '@/components/forms/LoginForm';
 
-const LoginPage: React.FC = () => {
-  return (
+const LoginPage: React.FC = () => (
+  <>
     <div className='grid grid-cols-2 min-h-[100vh]'>
-      <div className='min-h-full bg-indigo-700 flex items-center min-h-full'>
+      <div className='min-h-full bg-indigo-700 flex items-center'>
         <div className='p-12'>
           <h1 className='text-white text-4xl font-bold'>Welcome to Admin Portal</h1>
           <div className='py-8'>
@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-}
+  </>
+);
 
 export default LoginPage;
