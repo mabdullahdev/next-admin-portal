@@ -1,11 +1,10 @@
 'use client'
 import React from 'react';
 import useAuth from '@/hooks/useAuth';
-import WarningModal from '@/components/UI/modal/warningModal';
+import WarningModal from '@/components/ui/modal/warningModal';
 import useModal from '@/hooks/useModal';
 import { Button } from '@headlessui/react';
 import AdminLayout from '../admin/layout';
-import WithAuth from '@/components/hoc/WithAuth';
 
 const DashboardPage: React.FC = () => {
   const { isOpen, open, close } = useModal();
@@ -43,4 +42,4 @@ const DashboardPage: React.FC = () => {
   );
 }
 
-export default WithAuth(DashboardPage);
+export default DashboardPage;

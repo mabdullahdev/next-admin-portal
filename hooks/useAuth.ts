@@ -1,16 +1,13 @@
-'use client';
-
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { login, logout } from '@/store/authSlice';
-import useApi from './useAPI';
+import apiRequest from '@/utils/services/apiRequest';
 import User from '@/utils/models/auth/_user';
 
 interface AuthHook {
   email: string;
   password: string;
-  error: string | null;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   handleLoginSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -20,23 +17,23 @@ interface AuthHook {
 const useAuth = (): AuthHook => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { data, error, request } = useApi<User>();
   const router = useRouter();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (data) {
-      dispatch(login({user: data}));
-
-      // Navigate to login page after logout
-      router.push('/dashboard');
-    }
-  }, [data, dispatch, router]);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      await request('/api/auth/login', 'post', {email, password});
+      const {data, error} = await apiRequest<User>('/api/auth/login', 'post', {email, password});
+
+      if (data) {
+        // Dispatch logout action
+        dispatch(login({user: data}));
+
+        // Navigate to dashboard page after login
+        router.push('/dashboard');
+      } else if (error) {
+        console.error('Login failed:', error);
+      }
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -44,7 +41,7 @@ const useAuth = (): AuthHook => {
 
   const handleLogoutSubmit = async (): Promise<void> => {
     try {
-      await request('api/auth/logout', 'post');
+      await apiRequest('api/auth/logout', 'post');
       
       // Dispatch logout action
       dispatch(logout());
@@ -60,7 +57,6 @@ const useAuth = (): AuthHook => {
   return {
     email,
     password,
-    error,
     setEmail,
     setPassword,
     handleLoginSubmit,

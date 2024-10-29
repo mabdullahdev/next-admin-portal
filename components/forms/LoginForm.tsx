@@ -36,12 +36,12 @@ const LoginForm: React.FC = () => {
           <div className='flex items-center justify-between mt-2'>
             <div className='flex items-center gap-2'>
               <input id='remember' name='remember' type='checkbox' className='checked:bg-blue-500 cursor-pointer w-4 h-4' />
-              <label htmlFor='remember' className='block text-sm font-medium leading-6 text-gray-900 cursor-pointer font-medium text-sm'>
+              <label htmlFor='remember' className='block leading-6 text-gray-900 cursor-pointer font-medium text-sm'>
                 Remember me
               </label>
             </div>
             <div className='text-sm'>
-              <a href='#' className=' text-indigo-600 hover:text-indigo-500 font-medium text-[13px] text-rose-600'>
+              <a href='#' className='hover:text-indigo-500 font-medium text-[13px] text-rose-600'>
                 Forgot password?
               </a>
             </div>
