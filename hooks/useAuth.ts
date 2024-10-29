@@ -1,8 +1,8 @@
 'use client';
+
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { RootState } from '@/store';
 import { login, logout } from '@/store/authSlice';
 import useApi from './useAPI';
 import User from '@/utils/models/auth/_user';
@@ -21,25 +21,17 @@ const useAuth = (): AuthHook => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { data, error, request } = useApi<User>();
-  const { isAuthorized } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (data?.user && data.token && data.refreshToken) {
-      dispatch(login({user: data?.user, token: data?.token, refreshToken: data?.refreshToken}));
-    }
-  }, [data, dispatch]);
+    if (data) {
+      dispatch(login({user: data}));
 
-  useEffect(() => {
-
-  }, [error]);
-
-  useEffect(() => {
-    if (isAuthorized) {
+      // Navigate to login page after logout
       router.push('/dashboard');
     }
-  }, [isAuthorized, router]);
+  }, [data, dispatch, router]);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -53,12 +45,13 @@ const useAuth = (): AuthHook => {
   const handleLogoutSubmit = async (): Promise<void> => {
     try {
       await request('api/auth/logout', 'post');
-
+      
       // Dispatch logout action
       dispatch(logout());
-  
+
       // Navigate to login page after logout
       router.push('/login');
+  
     } catch (error) {
       console.error('Logout failed:', error)
     }
