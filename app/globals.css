@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --pg-top-bar-height: 3.5rem;
+}
+
 input:focus-visible{
   outline: 0 !important;
 }
